@@ -50,7 +50,7 @@ CREATE TABLE `expended_attribute` (
 DROP TABLE IF EXISTS `modifiable_conversion_attribute`;
 CREATE TABLE `modifiable_conversion_attribute` (
     `id_modifiable_conversion_attribute` int NOT NULL AUTO_INCREMENT,
-    `id_attribute` int NOT NULL,
+    `id_attributes` int NOT NULL,
     `id_conversion` int NOT NULL,
     `id_modifiable_mechanic` int NOT NULL,
     PRIMARY KEY (`id_modifiable_conversion_attribute`)
@@ -67,9 +67,9 @@ CREATE TABLE `modifiable_mechanic` (
         `last_modified` timestamp NULL DEFAULT NULL,
         PRIMARY KEY (`id_modifiable_mechanic`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
--- Crear tabla `modifiable_mechanic_videogames`
-DROP TABLE IF EXISTS `modifiable_mechanic_videogames`;
-CREATE TABLE `modifiable_mechanic_videogames` (
+-- Crear tabla `modifiable_mechanic_videogame`
+DROP TABLE IF EXISTS `modifiable_mechanic_videogame`;
+CREATE TABLE `modifiable_mechanic_videogame` (
     `id_modifiable_mechanic_videogame` int NOT NULL AUTO_INCREMENT,
     `id_modifiable_mechanic` int NOT NULL,
     `id_videogame` int NOT NULL,
@@ -248,7 +248,7 @@ VALUES (
     );
 -- Insertar datos en la tabla `modifiable_conversion_attribute`
 INSERT INTO `modifiable_conversion_attribute` (
-        id_attribute,
+        id_attributes,
         id_conversion,
         id_modifiable_mechanic
     )
@@ -357,13 +357,13 @@ INSERT INTO modifiable_mechanic (
     )
 VALUES (
         'More attempts',
-        'Permite al jugador obtener más intentos en una mecánica específica.',
+        'Permite al jugador obtener un intento extra para responder',
         '1',
         NOW(),
         NOW()
     );
 -- 3. Relacionar WealthQuest con la mecánica "more attempts" en modifiable_mechanic_videogames
-INSERT INTO modifiable_mechanic_videogames (id_modifiable_mechanic, id_videogame, options)
+INSERT INTO modifiable_mechanic_videogame (id_modifiable_mechanic, id_videogame, options)
 VALUES (
         (
             SELECT id_modifiable_mechanic
@@ -396,7 +396,7 @@ VALUES (
 INSERT INTO modifiable_conversion_attribute (
         id_modifiable_mechanic,
         id_conversion,
-        id_attribute
+        id_attributes
     )
 VALUES (
         (

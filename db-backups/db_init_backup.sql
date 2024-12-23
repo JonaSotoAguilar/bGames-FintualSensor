@@ -56,7 +56,7 @@ CREATE TABLE `expended_attribute` (
 DROP TABLE IF EXISTS `modifiable_conversion_attribute`;
 CREATE TABLE `modifiable_conversion_attribute` (
   `id_modifiable_conversion_attribute` int NOT NULL AUTO_INCREMENT,
-  `id_attribute` int NOT NULL,
+  `id_attributes` int NOT NULL,
   `id_conversion` int NOT NULL,
   `id_modifiable_mechanic` int NOT NULL,
   PRIMARY KEY (`id_modifiable_conversion_attribute`)
@@ -75,8 +75,8 @@ CREATE TABLE `modifiable_mechanic` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- Crear tabla `modifiable_mechanic_videogames`
-DROP TABLE IF EXISTS `modifiable_mechanic_videogames`;
-CREATE TABLE `modifiable_mechanic_videogames` (
+DROP TABLE IF EXISTS `modifiable_mechanic_videogame`;
+CREATE TABLE `modifiable_mechanic_videogame` (
   `id_modifiable_mechanic_videogame` int NOT NULL AUTO_INCREMENT,
   `id_modifiable_mechanic` int NOT NULL,
   `id_videogame` int NOT NULL,

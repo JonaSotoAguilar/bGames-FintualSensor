@@ -28,13 +28,13 @@ INSERT INTO modifiable_mechanic (
     )
 VALUES (
         'More attempts',
-        'Permite al jugador obtener más intentos en una mecánica específica.',
+        'Permite al jugador obtener un intento extra para responder.',
         '1',
         NOW(),
         NOW()
     );
 -- 3. Relacionar WealthQuest con la mecánica "more attempts" en modifiable_mechanic_videogames
-INSERT INTO modifiable_mechanic_videogames (id_modifiable_mechanic, id_videogame, options)
+INSERT INTO modifiable_mechanic_videogame (id_modifiable_mechanic, id_videogame, options)
 VALUES (
         (
             SELECT id_modifiable_mechanic
@@ -67,7 +67,7 @@ VALUES (
 INSERT INTO modifiable_conversion_attribute (
         id_modifiable_mechanic,
         id_conversion,
-        id_attribute
+        id_attributes
     )
 VALUES (
         (
