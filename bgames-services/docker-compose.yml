@@ -1,0 +1,140 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bgames  
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
+
+  get-routes:
+    build:
+      context: ./Get routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  post-routes:
+    build:
+      context: ./Post routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  user-routes:
+    build:
+      context: ./User routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3010"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  standard-routes:
+    build:
+      context: ./Standard routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3009:3009"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  management-routes:
+    build:
+      context: ./Management routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3007:3007"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  spend-routes:
+    build:
+      context: ./Spend routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3008:3008"
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames  
+    depends_on: 
+      - db
+
+  online-routes:
+    build:
+      context: ./Online routes microservice
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"  
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: userpassword
+      DB_DATABASE: bgames
+      REDIS_HOST: redis 
+      REDIS_PORT: 6379
+    depends_on: 
+      - db
+      - redis 
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - default
+
+volumes:
+  db-data:
