@@ -50,5 +50,5 @@ El **Sensor de Fintual** es un componente desarrollado para evaluar el porcentaj
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
+   git clone https://github.com/JonaSotoAguilar/bGames-FintualSensor.git
+   cd bGames-FintualSensor
