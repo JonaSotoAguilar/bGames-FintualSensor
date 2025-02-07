@@ -1,54 +1,35 @@
-# Sensor de Fintual
+# WealthQuest Content Packages
 
-El **Sensor de Fintual** es un componente desarrollado para evaluar el porcentaje de cumplimiento de las metas de ahorro mensual definidas entre los objetivos del usuario en la plataforma [Fintual](https://fintual.cl). Este sensor se integra en una aplicación que permite asociar, validar y calcular puntos basados en el ahorro del usuario.
+Esta rama (`Content`) está dedicada a almacenar y gestionar paquetes de preguntas (`.content`) para el juego **WealthQuest**, asociado al **sensor Fintual**. A continuación, se detalla su propósito y las instrucciones relevantes.
 
-## Características
+## Propósito
 
-- **Conexión a Fintual**: Los usuarios pueden asociar su cuenta de Fintual mediante su correo electrónico y contraseña.
-- **Validación del ahorro**: El sensor verifica las metas de ahorro de los objetivos definidos en Fintual.
-- **Obtención de puntos**: Calcula un porcentaje de ahorro mensual y otorga puntos que pueden ser utilizados en la aplicación.
-- **Asociación y desasociación**: Los usuarios pueden asociar o desasociar el sensor fácilmente.
+El contenido aquí almacenado es de acceso público y cumple las siguientes funciones:
 
-## Requisitos
+- **Subir paquetes de preguntas**: Los `.content` son generados desde la interfaz de creación dentro del juego WealthQuest.
+- **Distribuir contenido al público**: Al subir los paquetes aquí, estos estarán disponibles para descargar y usar dentro del juego.
+- **Actualizar paquetes existentes**: Permite subir nuevas versiones de los paquetes de preguntas, haciendo disponibles las actualizaciones para su descarga.
 
-1. **Base de datos**:
-   - La base de datos de **bGames** debe estar correctamente configurada. Se proveen scripts de creación y población en la carpeta `db-backups`:
-     - **bGames_backup.sql**: Creación y población de la base de datos de bGames con datos de prueba y del sensor.
-     - **bGames_FintualSensor_backup.sql**: Población de datos específicos del sensor Fintual.
-     - **bGames_WealthQuest_backup.sql**: Población de datos específicos del juego WealthQuest.
-     - **db_init_backup.sql**: Creación de la base de datos de bGames con sus tablas.
-   - Asegúrate de ejecutar los scripts necesarios según el contexto de tu instalación.
+## Por qué en este repositorio
 
-2. **Ejecución del Framework de bGames**:
-   - Se provee un archivo `docker-compose.yml` y la estructura requerida en la carpeta `bgames-services` para ejecutar los principales servicios del framework de **bGames**. Esto incluye:
-     - **Carpeta `db-init/`**: Debe contener el script `.sql` a ejecutar para crear y poblar la base de datos de bGames automáticamente en el contenedor (bGames_backup.sql).
-     - **Carpetas de microservicios**:
-       - `get-routes-microservice/`: Código del microservicio para rutas de obtención de datos.
-       - `management-routes-microservice/`: Código del microservicio para la gestión de sensores.
-       - `online-routes-microservice/`: Código del microservicio para rutas en línea.
-       - `post-routes-microservice/`: Código del microservicio para rutas de inserción de datos.
-       - `spend-routes-microservice/`: Código del microservicio para manejar los gastos.
-       - `standard-routes-microservice/`: Código del microservicio para manejar estándares.
-       - `user-routes-microservice/`: Código del microservicio para manejar usuarios.
-   - Para iniciar los servicios:
-     ```bash
-     cd bgames-services
-     docker-compose up --build
-     ```
+Debido a que el repositorio principal de WealthQuest contiene **assets de pago** y se mantiene como privado, los paquetes `.content` se almacenan en este repositorio público para facilitar su acceso y distribución.
 
-3. **Configuración de `urls.js`**:
-   - Para que los microservicios `standard-routes-microservice` y `spend-routes-microservice` funcionen correctamente en el entorno Docker, debes modificar el archivo `urls.js` en cada uno de estos microservicios con el siguiente contenido:
-     ```javascript
-     const postHost = 'post-routes:3002';
-     const getHost = 'get-routes:3001';
-     const sensorHost = 'management-routes:3007';
+## ¿Qué son los paquetes `.content`?
 
-     export { postHost, getHost, sensorHost };
-     ```
+Son archivos que contienen preguntas personalizadas creadas para el juego WealthQuest. Estos archivos son esenciales para personalizar y expandir el contenido del juego.
 
-## Instalación
+## Cómo usar esta rama
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/JonaSotoAguilar/bGames-FintualSensor.git
-   cd bGames-FintualSensor
+1. **Subir paquetes de preguntas**: Los archivos `.content` generados en el juego WealthQuest se deben subir directamente a esta rama.
+2. **Descarga de contenido**: Los jugadores podrán acceder a los paquetes a través de la funcionalidad de descarga dentro del juego WealthQuest.
+3. **Actualizar contenido**: Si existe una nueva versión de un paquete, puedes modificarlo desde la interfaz del juego (solo si eres el autor). Al hacerlo:
+   - **El juego incrementará automáticamente la versión** en 1 para la nueva versión.
+   - Luego, podrás subir el paquete actualizado a esta rama para disponibilizar su descarga.
+4. **Importar contenido**: El juego cuenta con la opción de importar archivos `.content` directamente. Si no tienes acceso para subir archivos al repositorio para disponibilizar su descarga, puedes compartirlos por otros medios y luego importarlos al juego.
+
+## Contribuciones
+
+Si deseas contribuir subiendo paquetes, asegúrate de que sean compatibles con el juego WealthQuest y sigan el formato `.content` creados desde la misma interfaz del videojuego.
+
+---
+Repositorio creado por **JonaSotoAguilar**.
