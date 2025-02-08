@@ -30,6 +30,3 @@ Son archivos que contienen preguntas personalizadas creadas para el juego Wealth
 ## Contribuciones
 
 Si deseas contribuir subiendo paquetes, asegúrate de que sean compatibles con el juego WealthQuest y sigan el formato `.content` creados desde la misma interfaz del videojuego.
-
----
-Repositorio creado por **JonaSotoAguilar**.
