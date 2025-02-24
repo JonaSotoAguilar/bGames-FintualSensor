@@ -27,6 +27,11 @@ Descarga el `docker-compose.yml` desde la sección de Releases del repositorio y
 docker-compose up --build
 ```
 
+### Usuario para pruebas
+
+- **Usuario:** `user`
+- **Contraseña:** `asd123`
+
 ### Servicios Incluidos
 
 Los servicios configurados en el `docker-compose.yml` incluyen:
