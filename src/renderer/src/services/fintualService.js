@@ -30,12 +30,12 @@ const fintualService = {
    */
   getSavingsPercentage: async (email, token) => {
     try {
-      // Llama a IPC para obtener los goals
       const goals = await fintualService.getGoals(email, token);
 
       let totalGoalSavings = 0;
       let totalDeposited = 0;
 
+      // Calcular la meta de ahorro y  total depositado de entre todos los goals (objetivos).
       goals.forEach((goal) => {
         const attributes = goal.attributes;
 
